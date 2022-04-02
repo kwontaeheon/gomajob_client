@@ -21,7 +21,7 @@ const connector = new AppSearchAPIConnector({
   searchKey: "search-yjbz4bto7a5aeycvnrgqwjos",
   engineName: "career-search-engine",
   // hostIdentifier: "http://maum.mooo.com",
-  endpointBase: "http://maum.mooo.com:3002",
+  endpointBase: "https://maum.mooo.com",
   // hostIdentifier: "host-2376rb"
   // beforeSearchCall: (existingSearchOptions, next) =>
   //   next({
