@@ -24,7 +24,7 @@ export default class ResultView extends React.Component {
       
       r = r.replaceAll("&#x2F;", "/");
       r = r.replaceAll("&quot;", "\"");
-      r = r.replaceAll(/[^\w\s‘'\[\]"ㄱ-ㅎㅏ-ㅣ가-힣0-9~,+\(\)◆※#.<>\-:/]/gi, '<br>');
+      r = r.replaceAll(/[^\w\s‘'[\]"ㄱ-ㅎㅏ-ㅣ가-힣0-9~,+()◆※#.<>\-:/]/gi, '<br>');
       const endsStrs = ["직원 유형", "영입인원", "조직소개", "업무내용", "자격조건", "우대조건", "우대사항", "지원프로세스", "직군 태그", "필독사항", "지원자격"];
       endsStrs.forEach(s => {
         r = r.replaceAll("◆ " + s, s);
@@ -39,7 +39,7 @@ export default class ResultView extends React.Component {
       );
       this.state.body_content.changed = r;
 
-      o = this.state.url.raw;
+      var o = this.state.url.raw;
       if (o.includes("TECHNOLOGY")) {
         this.state.jobClass = "💻테크";
       } else if (o.includes("BUSINESS_SERVICES")) {
@@ -54,15 +54,15 @@ export default class ResultView extends React.Component {
     }
     else if (this.state.url.raw.includes("naver")) {
 
-      var r =  this.state.body_content.raw;
-      r = r.substring(r.search("[\[]"));
+      r =  this.state.body_content.raw;
+      r = r.substring(r.search("[[]"));
       r = r.substring(0, r.lastIndexOf("지원하기"));
       
       
       r = r.replaceAll("&#x2F;", "/");
       r = r.replaceAll("&quot;", "\"");
       
-      r = r.replaceAll(/[^\w\s@‘'\[\]"ㄱ-ㅎㅏ-ㅣ가-힣0-9~,+\(\)▶◆※#.<>\-:/]/gi, '<br>');
+      r = r.replaceAll(/[^\w\s@‘'[\]"ㄱ-ㅎㅏ-ㅣ가-힣0-9~,+()▶◆※#.<>\-:/]/gi, '<br>');
       const endsStrs = ["업무내용", "필요역량", "지원자격/우대사항", "채용조건", "역할", "근무지", "자격요건", "역할", "조직소개", "조직 소개", "학력사항", "필수사항", "우대사항", "지원자격/ 우대사항", "채용하고 싶은 사람", "자격 요건" ];
       endsStrs.forEach(s => {
         r = r.replaceAll("[" + s + " ]", '<br><b>◆ ' + s + '</b><br>');
@@ -76,14 +76,14 @@ export default class ResultView extends React.Component {
       boldStrs.forEach(s=> {
         r = r.replaceAll(s, '<br><b>◆ ' + s + '</b><br>');
       });
-      const firstStrs = ["D-", "[", "◆ ", " -", , " . ", "※"];
+      const firstStrs = ["D-", "[", "◆ ", " -", " . ", "※"];
       firstStrs.forEach(s => {
         r = r.replaceAll(s, '<br>' + s);
       }
       );
       r = r.replaceAll("채용 공고 홈 이전 공고 보기 다음 공고 보기", "");
       this.state.body_content.changed = r;
-      var o = this.state.body_content.raw;
+      o = this.state.body_content.raw;
       this.state.title.snippet = o.substring(o.search("검색")+2, o.search("채용 공고"));
       o = this.state.url.raw;
       if (o.includes("developer")) {
@@ -118,9 +118,9 @@ export default class ResultView extends React.Component {
           <div
             className="sui-result__image"
             style={{
-              maxWidth: "100px",
-              paddingLeft: "24px",
-              paddingTop: "10px"
+              maxWidth: "20%",
+              // paddingLeft: "24px",
+              // paddingTop: "10px"
             }}
           >
             <img
@@ -150,7 +150,7 @@ export default class ResultView extends React.Component {
             <span
               className="sui-result__value"
               dangerouslySetInnerHTML={{
-                __html: this.state.jobClass + " 🔗" + "원문 링크"
+                __html: " 🔗원문 링크 " +this.state.jobClass +" 📨"+  this.state.last_crawled_at.raw.substring(0, 10)
               }}
             />
           </li>
