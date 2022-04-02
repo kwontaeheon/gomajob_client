@@ -1,0 +1,32 @@
+.App {
+  font-family: sans-serif;
+  /* text-align: center; */
+}
+.sui-search-box__submit{
+  background: linear-gradient(#20a0aa, #319900) #2f7cf4;
+}
+.sui-search-box__submit:hover {
+  background: linear-gradient(#20a0cf, #35a988) #2f7ca4;
+}
+
+.sui-search-box__text-input:focus{
+  border: 1px solid #35aa65;
+}
+.sui-result em {
+  color: #319900;
+}
+.sui-result__value {
+  color: #356734;
+}
+
+.sui-result__title {
+    color: #55ab88;
+    font-style: normal;
+    font-size: 1.3em;
+}
+
+a { text-decoration:none } 
+
+.sui-search-box__autocomplete-container li[aria-selected="true"] {
+    background: #55ab88;
+}

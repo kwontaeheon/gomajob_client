@@ -1,0 +1,23 @@
+{
+  "engineName": "career-search-engine",
+  "endpointBase": "http://maum.mooo.com:3002",
+  "searchKey": "search-yjbz4bto7a5aeycvnrgqwjos",
+  "resultFields": [
+    "last_crawled_at",
+    "body_content",
+    "title",
+    "url",
+    "headings",
+    "url_host"
+  ],
+  "sortFields": [
+    "last_crawled_at"
+  ],
+  "facets": [
+    "url_host",
+    "headings",
+    "title"
+  ],
+  "titleField": "title",
+  "urlField": "url"
+}
