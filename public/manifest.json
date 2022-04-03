@@ -1,6 +1,6 @@
 {
-  "short_name": "Reference UI",
-  "name": "App Search Reference UI",
+  "short_name": "메이잡: 실시간 대기업 취업정보",
+  "name": "메이잡: 실시간 대기업 취업정보 Major Job, Majob",
   "icons": [
     {
       "src": "favicon.ico",

@@ -97,6 +97,45 @@ export default class ResultView extends React.Component {
       }
       this.state.image_url = "https://play-lh.googleusercontent.com/Kbu0747Cx3rpzHcSbtM1zDriGFG74zVbtkPmVnOKpmLCS59l7IuKD5M3MKbaq_nEaZM";
     }
+
+    else if (this.state.url.raw.includes("linecorp")) {
+
+      r =  this.state.body_content.raw;
+      r = r.substring(r.search("Corporate ") + 10, r.search("목록 보기"));
+      r = r.replaceAll("&#x2F;", "/");
+      r = r.replaceAll("&quot;", "\"");
+      
+      r = r.replaceAll(/[^\w\s@‘'[\]"ㄱ-ㅎㅏ-ㅣ가-힣!%0-9~,+()▶◆※#.<>\-:/]/gi, '<br>');
+      const boldStrs = ["담당업무", "자격요건", "우대사항", "전형안내", "근무제도", " 근무형태 ", "근무지", " 근무시간", "기타", "보훈 취업지원 대상 및 장애인 서류 제출 안내"
+    , "본 포지션과 직군에 대한 더 많은 스토리를 만나보세요!"];
+      boldStrs.forEach(s=> {
+        r = r.replaceAll(s, '<br><b>◆ ' + s + '</b><br>');
+      });
+      const firstStrs = ["D-", "[", "◆ ", " . ", ];
+      firstStrs.forEach(s => {
+        r = r.replaceAll(s, '<br>' + s);
+      }
+      );
+      r = r.replaceAll("Line Facebook Twitter Link ", "<br><br>");
+      this.state.body_content.changed = r;
+      this.state.title.changed = this.state.title.snippet;
+      o = this.state.body_content.changed;
+      o = o.substring(0, o.search("<br><br>"));
+      if (o.includes("Engineering")) {
+        this.state.jobClass = "💻Engineering";
+      } else if (o.includes("Design")) {
+        this.state.jobClass = "🖥Design";
+      } else if (o.includes("Product")) {
+        this.state.jobClass = "🧸Product Planning";
+      } else if (o.includes("Business")) {
+        this.state.jobClass = "✨Business&Sales";
+      } else if (o.includes("Marketing")) {
+        this.state.jobClass = "🎁Marketing&Comms";
+      } else if (o.includes("Corporate")) {
+        this.state.jobClass = "🔮Corporate";
+      }
+      this.state.image_url = "https://d.line-scdn.net/n/_s1/_0/linecorp-web-uit/images/line_icon_200_v3.jpg";
+    }
     // this.state.title.changed = "🔗" + this.state.title.snippet;
     // console.log(this.state.body_content.changed);
   }
@@ -115,28 +154,25 @@ export default class ResultView extends React.Component {
           
         </div>
         <div className="sui-result__body">
-          <div
-            className="sui-result__image"
-            style={{
-              maxWidth: "20%",
-              // paddingLeft: "24px",
-              // paddingTop: "10px"
-            }}
-          >
-            <img
+          <ul className="sui-result__details">
+          <a href={this.state.url.raw} target="_blank" rel="noreferrer">
+          <li>
+          <img
               src={this.state.image_url}
               alt="thumb"
+              
               style={{
-                display: "block",
-                // width: "100%",
+                // display: "block",
+                maxHeight: "1.3em",
+                maxWidth: "1.3em",
+                padding: 0,
+                margin: 0,
                 // height: "100%",
-                // objectFit: "center",
-                objectPosition: "center"
+                objectFit: "center",
+                objectPosition: "100% 100%"
+                
               }}
             />
-          </div>
-          <ul className="sui-result__details">
-          <li>
           <span
             className="sui-result__title"
             // Snippeted results contain search term highlights with html and are
@@ -145,12 +181,12 @@ export default class ResultView extends React.Component {
           />
           </li>
         
-          <a href={this.state.url.raw} target="_blank" rel="noreferrer">
+          
           <li>
             <span
               className="sui-result__value"
               dangerouslySetInnerHTML={{
-                __html: " 🔗원문 링크 " +this.state.jobClass +" 📨"+  this.state.last_crawled_at.raw.substring(0, 10)
+                __html: " 🔗원문 링크<br>" + this.state.jobClass +"<br>📨"+  this.state.last_crawled_at.raw.substring(0, 10)
               }}
             />
           </li>

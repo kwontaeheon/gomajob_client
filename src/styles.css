@@ -17,6 +17,7 @@
 }
 .sui-result__value {
   color: #356734;
+  /* font-size: 1.1em; */
 }
 
 .sui-result__title {
@@ -30,3 +31,12 @@ a { text-decoration:none }
 .sui-search-box__autocomplete-container li[aria-selected="true"] {
     background: #55ab88;
 }
+
+
+
+
+
+
+
+
+

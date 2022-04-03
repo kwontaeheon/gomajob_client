@@ -171,8 +171,8 @@ export default function App() {
             //     />
             //   </>
             // )}
-            // debounceLength=300
-            // searchAsYouType={true}
+            debounceLength={1500}
+            searchAsYouType={true}
             // autocompleteResults={{
             //   linkTarget: "_blank",
             //   sectionTitle: "추천결과",
