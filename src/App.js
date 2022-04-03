@@ -85,6 +85,12 @@ const configurationOptions = {
           size: 75, // Limit the snippet to 75 characters.
           fallback: true // Fallback to a "raw" result.
         }
+      },
+      company_name: {
+        raw: {}
+      },
+      job_class: {
+        raw: {}
       }
     },
     // 3. Facet by scores, genre, publisher, and platform, which we'll use to build filters later.
@@ -129,6 +135,12 @@ const configurationOptions = {
         ]
       },
       title: { 
+        type: "value", size: 100 
+      },
+      company_name: {
+        type: "value", size: 100 
+      }, 
+      job_class: {
         type: "value", size: 100 
       }
     }
@@ -205,10 +217,11 @@ export default function App() {
                   }
                 ]}
               />
-              <Facet field="url_host" label="호스트"  />
+              <Facet field="company_name" label="회사명"  />
               
+              <Facet field="job_class" label="직무" isFilterable={true} />
               <Facet field="last_crawled_at" label="수집일시" isFilterable={true} />
-              <Facet field="title" label="제목" isFilterable={true} />
+              
             </div>
           }
           bodyHeader={
