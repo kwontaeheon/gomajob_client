@@ -211,7 +211,7 @@ export default function App() {
                     direction: ""
                   },
                   {
-                    name: "수집일시",
+                    name: "최종확인일시",
                     value: "last_crawled_at",
                     direction: "desc"
                   }
@@ -220,7 +220,7 @@ export default function App() {
               <Facet field="company_name" label="회사명"  />
               
               <Facet field="job_class" label="직무" isFilterable={true} />
-              <Facet field="last_crawled_at" label="수집일시" isFilterable={true} />
+              <Facet field="last_crawled_at" label="최종확인일시" isFilterable={true} />
               
             </div>
           }

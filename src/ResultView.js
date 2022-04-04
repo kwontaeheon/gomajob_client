@@ -6,7 +6,7 @@ export default class ResultView extends React.Component {
     this.state = props.result;
   }
   updateBody(bodyContent) {
-    console.log(this.state.body_content.raw);
+    // console.log(this.state.body_content.raw);
     if (this.state.url.raw.includes("kakao")) {
       var r =  this.state.body_content.raw;
       // if (r.search("◆ 직원 유형") == -1) {
@@ -50,7 +50,9 @@ export default class ResultView extends React.Component {
         this.state.jobClass = "🔮스태프";
       }
       this.state.image_url = "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/news/d3d3eb87017f00001.png?type=thumb&opt=C630x472";
-      
+      o = this.state.title.snippet;
+      this.state.title.changed = o.substring(o.search("/ ")+2);
+      // console.log(this.state.title.changed);
     }
     else if (this.state.url.raw.includes("naver")) {
 
@@ -83,8 +85,8 @@ export default class ResultView extends React.Component {
       );
       r = r.replaceAll("채용 공고 홈 이전 공고 보기 다음 공고 보기", "");
       this.state.body_content.changed = r;
-      o = this.state.body_content.raw;
-      this.state.title.snippet = o.substring(o.search("검색")+2, o.search("채용 공고"));
+      
+      
       o = this.state.url.raw;
       if (o.includes("developer")) {
         this.state.jobClass = "💻개발자";
@@ -95,6 +97,8 @@ export default class ResultView extends React.Component {
       } else if (o.includes("management")) {
         this.state.jobClass = "🔮경영지원";
       }
+      o = this.state.body_content.raw;
+      this.state.title.changed = o.substring(o.search("검색")+2, o.search("채용 공고"));
       this.state.image_url = "https://play-lh.googleusercontent.com/Kbu0747Cx3rpzHcSbtM1zDriGFG74zVbtkPmVnOKpmLCS59l7IuKD5M3MKbaq_nEaZM";
     }
 
@@ -118,7 +122,6 @@ export default class ResultView extends React.Component {
       );
       r = r.replaceAll("Line Facebook Twitter Link ", "<br><br>");
       this.state.body_content.changed = r;
-      this.state.title.changed = this.state.title.snippet;
       o = this.state.body_content.changed;
       o = o.substring(0, o.search("<br><br>"));
       if (o.includes("Engineering")) {
@@ -135,6 +138,9 @@ export default class ResultView extends React.Component {
         this.state.jobClass = "🔮Corporate";
       }
       this.state.image_url = "https://d.line-scdn.net/n/_s1/_0/linecorp-web-uit/images/line_icon_200_v3.jpg";
+
+      o = this.state.title.snippet;
+      this.state.title.changed = o.substring(o.search("RS") + 5);
     }
     // this.state.title.changed = "🔗" + this.state.title.snippet;
     // console.log(this.state.body_content.changed);
@@ -142,10 +148,10 @@ export default class ResultView extends React.Component {
   render() {
     // console.log(this.state);
     this.updateBody();
-    console.log(moment()
-    .subtract(12, "hours")
-    .toISOString());
-    console.log(this.state);
+    // console.log(moment()
+    // .subtract(12, "hours")
+    // .toISOString());
+    // console.log(this.state);
     return (
       
       <li className="sui-result">
@@ -177,7 +183,7 @@ export default class ResultView extends React.Component {
             className="sui-result__title"
             // Snippeted results contain search term highlights with html and are
             // 100% safe and santitized, so we dangerously set them here
-            dangerouslySetInnerHTML={{ __html: this.state.title.snippet }}
+            dangerouslySetInnerHTML={{ __html: this.state.title.changed }}
           />
           </li>
         
