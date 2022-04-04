@@ -94,6 +94,7 @@ const configurationOptions = {
       }
     },
     // 3. Facet by scores, genre, publisher, and platform, which we'll use to build filters later.
+    disjunctiveFacets: ["last_crawled_at",  "job_class"],
     facets: {
       url_host: {
         type: "value", 
@@ -198,6 +199,7 @@ export default function App() {
               titleField="title"
               urlField="url"
               resultView={ResultView}
+              shouldTrackClickThrough={true}
             />
           }
           sideContent={
@@ -219,8 +221,8 @@ export default function App() {
               />
               <Facet field="company_name" label="회사명"  />
               
-              <Facet field="job_class" label="직무" isFilterable={true} />
-              <Facet field="last_crawled_at" label="최종확인일시" isFilterable={true} />
+              <Facet field="job_class" label="직무" isFilterable={true}  filterType="any"/>
+              <Facet field="last_crawled_at" label="최종확인일시"  />
               
             </div>
           }
