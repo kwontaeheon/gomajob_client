@@ -40,18 +40,9 @@ export default class ResultView extends React.Component {
       this.state.body_content.changed = r;
 
       var o = this.state.url.raw;
-      if (o.includes("TECHNOLOGY")) {
-        this.state.jobClass = "💻테크";
-      } else if (o.includes("BUSINESS_SERVICES")) {
-        this.state.jobClass = "🧸서비스비즈";
-      } else if (o.includes("DESIGN/BRAND_MARKETING")) {
-        this.state.jobClass = "🖥디자인/브랜드";
-      } else if (o.includes("STAFF")) {
-        this.state.jobClass = "🔮스태프";
-      }
       this.state.image_url = "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/news/d3d3eb87017f00001.png?type=thumb&opt=C630x472";
       o = this.state.title.snippet;
-      this.state.title.changed = o.substring(o.search("/ ")+2);
+      this.state.title.changed = o.substring(o.search("/ ")+1);
       // console.log(this.state.title.changed);
     }
     else if (this.state.url.raw.includes("naver")) {
@@ -85,18 +76,6 @@ export default class ResultView extends React.Component {
       );
       r = r.replaceAll("채용 공고 홈 이전 공고 보기 다음 공고 보기", "");
       this.state.body_content.changed = r;
-      
-      
-      o = this.state.url.raw;
-      if (o.includes("developer")) {
-        this.state.jobClass = "💻개발자";
-      } else if (o.includes("designer")) {
-        this.state.jobClass = "🖥설계(디자인)";
-      } else if (o.includes("contents")) {
-        this.state.jobClass = "🧸콘텐츠&서비스";
-      } else if (o.includes("management")) {
-        this.state.jobClass = "🔮경영지원";
-      }
       o = this.state.body_content.raw;
       this.state.title.changed = o.substring(o.search("검색")+2, o.search("채용 공고"));
       this.state.image_url = "https://play-lh.googleusercontent.com/Kbu0747Cx3rpzHcSbtM1zDriGFG74zVbtkPmVnOKpmLCS59l7IuKD5M3MKbaq_nEaZM";
@@ -122,25 +101,35 @@ export default class ResultView extends React.Component {
       );
       r = r.replaceAll("Line Facebook Twitter Link ", "<br><br>");
       this.state.body_content.changed = r;
-      o = this.state.body_content.changed;
-      o = o.substring(0, o.search("<br><br>"));
-      if (o.includes("Engineering")) {
-        this.state.jobClass = "💻Engineering";
-      } else if (o.includes("Design")) {
-        this.state.jobClass = "🖥Design";
-      } else if (o.includes("Product")) {
-        this.state.jobClass = "🧸Product Planning";
-      } else if (o.includes("Business")) {
-        this.state.jobClass = "✨Business&Sales";
-      } else if (o.includes("Marketing")) {
-        this.state.jobClass = "🎁Marketing&Comms";
-      } else if (o.includes("Corporate")) {
-        this.state.jobClass = "🔮Corporate";
-      }
       this.state.image_url = "https://d.line-scdn.net/n/_s1/_0/linecorp-web-uit/images/line_icon_200_v3.jpg";
 
       o = this.state.title.snippet;
       this.state.title.changed = o.substring(o.search("RS") + 5);
+    }
+    else if (this.state.url.raw.includes("daangn")) {
+      console.log(this.state.body_content.raw);
+      r =  this.state.body_content.raw;
+      
+      r = r.replaceAll("&#x2F;", "/");
+      r = r.replaceAll("&quot;", "\"");
+      r = r.substring(r.search("자주 묻는 질문 ") + 9);
+      r = r.substring(r.search("지원하기")+4);
+      // r = r.replaceAll(/[^\w\s@‘'[\]"ㄱ-ㅎㅏ-ㅣ가-힣!%0-9~,+()▶◆※#.<>\-:/]/gi, '<br>');
+      const boldStrs = [ "이런 일을 해요", "이런 분을 찾고 있어요", "이런 분이면 더 좋아요!", "참고해 주세요", "이렇게 합류해요"];
+      boldStrs.forEach(s=> {
+        r = r.replaceAll(s, '<br><br><b>◆ ' + s + '</b><br>');
+      });
+      const lastStrs = ["지원하기", "소개해요"];
+      lastStrs.forEach(s => {
+        r = r.replaceAll(s, '<b>' + s + '</b><br><br>');
+      }
+      );
+      r = r.substring(0, r.search("지원하기"));
+      this.state.body_content.changed = r;
+      this.state.image_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-jD3d51TqQWbOrAesAyGgG5aSkQPNywiTU4B878V0OoVjzPQtHQu0XgW4-xBTAoZqn44&usqp=CAU";
+
+      o = this.state.title.snippet;
+      this.state.title.changed = o ; // o.substring(o.search("RS") + 5);
     }
     // this.state.title.changed = "🔗" + this.state.title.snippet;
     // console.log(this.state.body_content.changed);
@@ -192,7 +181,7 @@ export default class ResultView extends React.Component {
             <span
               className="sui-result__value"
               dangerouslySetInnerHTML={{
-                __html: " 🔗원문 링크<br>" + this.state.jobClass +"<br>📨"+  this.state.last_crawled_at.raw.substring(0, 10)
+                __html: " 🔗원문 링크<br>🔮" + this.state.job_class.raw +"<br>📨"+  this.state.last_crawled_at.raw.substring(0, 10)
               }}
             />
           </li>
