@@ -158,7 +158,7 @@ export default function App() {
             <SearchBox 
             
             autocompleteSuggestions={true}
-            inputProps={{ placeholder: "검색하기"}}
+            inputProps={{ placeholder: "대기업 포지션 검색하기"}}
             // onSubmit={(e) => {return e;}}
             // inputView={({ getAutocomplete, getInputProps, getButtonProps }) => (
             //   <>
