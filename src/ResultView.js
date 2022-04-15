@@ -207,7 +207,9 @@ export default class ResultView extends React.Component {
               <li>
 
                 <li>
-                  <div id={this.state.url.raw} style={{ display: 'none' }}>
+                  <div id={this.state.url.raw} style={{ 
+                    // display: 'none'
+                 }}>
                     <a href={this.state.url.raw} target="_blank" rel="noreferrer">
                       <span
                         className="sui-result__value"
