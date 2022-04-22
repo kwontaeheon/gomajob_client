@@ -157,7 +157,6 @@ export default function App() {
           header={
             <div className="searchbox">
             <SearchBox 
-            enablePredictiveSuggestions={true}
             autocompleteMinimumCharacters={1}
             autocompleteSuggestions={true}
             inputProps={{ placeholder: "네카라당 포지션 검색하기"}}
