@@ -156,7 +156,7 @@ export default function App() {
         <Layout
           header={
             <SearchBox 
-            
+            autocompleteMinimumCharacters={1}
             autocompleteSuggestions={true}
             inputProps={{ placeholder: "네카라당 포지션 검색하기"}}
             // onSubmit={(e) => {return e;}}
@@ -184,7 +184,7 @@ export default function App() {
             //     />
             //   </>
             // )}
-            debounceLength={1500}
+            debounceLength={500}
             searchAsYouType={true}
             // autocompleteResults={{
             //   linkTarget: "_blank",

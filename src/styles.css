@@ -32,9 +32,37 @@ a { text-decoration:none }
     background: #55ab88;
 }
 
+.ad-parent {
+  width: 90%;
+  margin: 10px auto;
+  display: inline;
+  align-items: center;
+  align-content: center;
+}
 
+.ad-child {
+  /* border: 1px solid red; */
+  flex:0;
+  /* width:30%; */
+  /* box-sizing: border-box; */
+  text-align: center;
+  
+  
+}
 
+.sui-title {
+  font-family: 'Do Hyeon', sans-serif; 
+  font-size: 1.7em; 
+  text-align: center;
+  margin-top: 1%;
+}
 
+.sui-title2 {
+  font-family: 'Do Hyeon', sans-serif; 
+  font-size: 1.2em; 
+  text-align: center;
+  margin-bottom: 1%;
+}
 
 
 

@@ -208,16 +208,9 @@ export default class ResultView extends React.Component {
 
                 <li>
                   <div id={this.state.url.raw} style={{ 
-                    // display: 'none'
+                    display: 'none'
                  }}>
-                    <a href={this.state.url.raw} target="_blank" rel="noreferrer">
-                      <span
-                        className="sui-result__value"
-                        dangerouslySetInnerHTML={{
-                          __html: " 🔗<u>원문 링크</u><br>"
-                        }}
-                      />
-                    </a>
+                    
                     <span
                       className="sui-result__value"
                       display="none"
@@ -225,6 +218,14 @@ export default class ResultView extends React.Component {
                         __html: this.state.body_content.changed
                       }}
                     />
+                    <a href={this.state.url.raw} target="_blank" rel="noreferrer">
+                      <span
+                        className="sui-result__value"
+                        dangerouslySetInnerHTML={{
+                          __html: " <br><br>🔗<u>원문 링크</u><br>"
+                        }}
+                      />
+                    </a>
                   </div>
                 </li>
 
