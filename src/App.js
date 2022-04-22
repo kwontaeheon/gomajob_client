@@ -155,7 +155,9 @@ export default function App() {
       <div className="App">
         <Layout
           header={
+            <div className="searchbox">
             <SearchBox 
+            enablePredictiveSuggestions={true}
             autocompleteMinimumCharacters={1}
             autocompleteSuggestions={true}
             inputProps={{ placeholder: "네카라당 포지션 검색하기"}}
@@ -193,7 +195,8 @@ export default function App() {
             //   urlField: "url",
             //   shouldTrackClickThrough: true,
             // }}
-            />}
+            />
+            </div>}
           bodyContent={
             <Results
               titleField="title"

@@ -64,7 +64,11 @@ a { text-decoration:none }
   margin-bottom: 1%;
 }
 
-
-
+.searchbox {
+  max-width: 450px;
+  justify-content: center;
+  font-size: 1.2em;
+  margin: 0 auto;
+}
 
 
